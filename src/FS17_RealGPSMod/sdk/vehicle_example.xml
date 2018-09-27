@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<vehicle type="yourVehicleType">
+	<!--
+		This is an exampel file for Real PDA map specialization 
+		- here you can see which fields are manadtory, their default values (default values is values set in this file)
+	-->
+	
+	<!-- other nodes goes here -->
+	
+	<indoorHud>
+		<!-- other nodes goes here -->
+		<map>
+			<!--
+				@attr index       I3D Index to place map               value: i3d index       Required
+				@attr scale       Scale to apply after inserting map   value: vector (float3) 
+				@attr translation Translation to apply after inserting value: vector (float3) 
+				@attr rotation    Rotation to apply after inserting    value: vector (float3) 
+				@empty
+			-->
+			<!-- On that index is tranform group with translation 0 0 0 - rotation is 0 0 0 and scale i 1 1 1 -->
+			<linkNode scale="1 1 1" translation="0 0 0" rotation="0 0 0" index="0>4|10|0|1|0|1|0|7|1" />
+			
+			<!--
+				@tag player     Player settings
+				@tag background Background settings   
+				@attr rotate tell which component will be rotated and which will be sitll value: player|map
+			-->
+			<projection rotate="player" >
+				<!--
+					@attr size Player size      value: float
+				-->
+				<player     size="0.125" />
+				
+				<!--
+				@attr zoom        Map zoom applied value         : float
+				@attr aspectRatio Aspect ratio of map plane (x/y): float
+				-->
+				<background zoom="2" aspectRatio="1" />
+			</projection>
+			
+			<!--
+				@attr keyboard Tells if user is allowed to change settings. You can apply different setting on each item value: boolean
+				@tag mapZoom         
+				@tag playerSize      
+				@tag rotateComponent 
+			-->
+			<controls allow="true" >
+				<!--
+					@attr allow           Allow player to control map zoom?  value: boolean
+					@attr speed           Speed factor for axis change       value: float
+					@attr invertMouseAxis Tell if mouse axis is inverted     value: bool
+					@tag limit  
+				-->
+				
+				<mapZoom allow="true" speed="1" invertMouseAxis="true">
+					<!--
+						Set min and max value for map zoom
+						@attr min value: float
+						@attr max value: float
+					-->				
+					<limit min="1" max="20" />
+				
+				</mapZoom>
+				<!--
+					@attr allow           Allow player to control icon size?  value: boolean
+					@attr speed           Speed factor for axis change        value: float
+					@attr invertMouseAxis Tell if mouse axis is inverted      value: bool
+					@tag limit  
+				-->
+				
+				<playerSize allow="true" speed="0.5" invertMouseAxis="true">
+					<!--
+						Set min and max value for player size
+						@attr min value: float
+						@attr max value: float
+					-->
+					<limit min="0.001" max="1" />
+				</playerSize>
+				
+				<!--
+					@attr allow Allow user to toggle rotation between player and map value: boolean
+				-->
+				<rotateComponent allow="true" />
+			</controls>
+		</map>
+	</indoorHud>
+	
+	<!-- other nodes goes here -->
+</vehicle>
