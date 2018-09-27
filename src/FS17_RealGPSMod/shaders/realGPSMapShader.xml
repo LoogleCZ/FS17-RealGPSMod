@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<CustomShader version="3">
+	<!--
+	
+	Author: Martin Fabík
+	Email: mar.fabik@gmail.com
+	
+	GitHub project: https://github.com/LoogleCZ/FS17-RealGPSMod
+	If anyone found errors, please contact me at mar.fabik@gmail.com or report it on GitHub
+	
+	version ID   - 1.0.0
+	version date - 2018-09-05 18:30
+	
+	-->
+	<Parameters>
+		<!--
+			Player properties.
+		
+			Parameter: vec2(x,y) - Player position on plane. Each component in range between 0 and 1
+			Parameter: rotation  - Player rotation on plane
+			Parameter: playerSize
+		-->
+		<Parameter name="playerProps" target="playerProps" type="float4" defaultValue="0.5 0.5 3.141586 0.05" minValue="0.0 0.0 -12.5663706144 0.0" maxValue="1.0 1.0 12.5663706144 1.0" />
+		<!--
+			Map properties.
+			
+			Parameter: vec2(x,y) - Map centre
+			Parameter: zoom      - Map zoom
+			Parameter: rotation  - Map rotation
+		-->
+		<Parameter name="mapProps" target="mapProps" type="float4" defaultValue="0.5 0.5 1.0 0.0" minValue="0.0 0.0 1.0 -12.5663706144" maxValue="1.0 1.0 50 12.5663706144" />
+		<!--
+			Screen properties.
+			
+			Parameter: vec2(x,y) - Aspect ratio of screen (x axis and y axis)
+		-->
+		<Parameter name="screenProps" target="screenProps" type="float2" defaultValue="1 1" />
+	</Parameters>
+	<Textures>
+		<Texture name="pdaMap" defaultColorProfile="sRGB" />
+		<Texture name="playerIcon" defaultColorProfile="sRGB" />
+	</Textures>
+	<Variations>
+		<Variation name="PDA_PROJECTION_FLAT">
+			<![CDATA[ #define PDA_PROJECTION_FLAT ]]>
+		</Variation>
+	</Variations>
+	<LodLevel startDistance="0">
+		<CodeInjections>
+			<CodeInjection position="MATERIALINFO">
+<![CDATA[
+	uniform float4 playerProps;
+	uniform float4 mapProps;
+	uniform float2 screenProps;
+]]>
+			</CodeInjection>
+			<CodeInjection position="SAMPLERS">
+<![CDATA[
+	sampler2D pdaMap;
+	sampler2D playerIcon;
+]]>
+			</CodeInjection>
+			<CodeInjection position="POST_ALBEDO_FS">
+<![CDATA[
+	float2 albedoPosition = In.vs.ALBEDOMAP_TEXCOORD;
+	albedoPosition.x = (albedoPosition.x - 0.5)/screenProps.x + 0.5;
+	albedoPosition.y = (albedoPosition.y - 0.5)/screenProps.y + 0.5;
+	
+	/* find position */
+	float2 currPos = playerProps.xy - albedoPosition;
+	
+	float2x2 rotateMap = {
+		cos(mapProps.w), -sin(mapProps.w),
+		sin(mapProps.w), cos(mapProps.w)
+	};
+	albedoPosition = mul((albedoPosition - 0.5)/mapProps.z, rotateMap) + mapProps.xy;
+	
+	albedo = tex2D(pdaMap, albedoPosition);
+	
+	albedo *= step(0.0, albedoPosition.x) * step(0.0, albedoPosition.y) * step(albedoPosition.x, 1.0) * step(albedoPosition.y, 1.0);
+	
+	
+	float modifier = step(length(currPos), playerProps.w);
+	float2x2 rotatePlayer = {
+		cos(playerProps.z), -sin(playerProps.z),
+		sin(playerProps.z), cos(playerProps.z)
+	};
+	
+	float2 playerTexCoords = mul(currPos, rotatePlayer)/(playerProps.w*2) + 0.5;
+	float4 albedo2 = tex2D(playerIcon, playerTexCoords);
+	albedo = albedo * (1 - modifier) + lerp(albedo, albedo2, albedo2.a) * modifier;
+]]>
+			</CodeInjection>
+		</CodeInjections>
+	</LodLevel>
+</CustomShader>

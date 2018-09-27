@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="39">
+	<!--
+	Author: Martin Fabík
+	Email: mar.fabik@gmail.com
+	
+	GitHub project: https://github.com/LoogleCZ/FS17-RealGPSMod
+	If anyone found errors, please contact me at mar.fabik@gmail.com or report it on GitHub
+	
+	version ID   - 1.0.0
+	version date - 2018-09-05 18:30
+	-->
+    <author>Martin Fabík (LoogleCZ)</author>
+    <version>1.0.0</version>
+    <iconFilename>textures/icon.dds</iconFilename>
+    <multiplayer supported="true"/>
+	
+    <title>
+        <en>Real GPS Mod</en>
+		<cz>Mod reálné GPS</cz>
+    </title>
+	
+    <description>
+<en><![CDATA[Real GPS mod
+
+Ingame GPS map with custom settings.
+This is support mod.
+Specialization also needs to be inserted in vehicle.
+
+If you're modder who wants to insert Real GPS mod into you vehicle, please follow guide in README.txt found in mod's root directory. For further details see GitHub repository.
+
+Author: Martin Fabík
+Email: mar.fabik@gmail.com
+GitHub project: https://github.com/LoogleCZ/FS17-RealGPSMod
+
+PayPal support: https://www.paypal.me/MartinFabik
+
+Default keymap:
+
+Enter/Exit GPS Setup mode: Left Shift + Key L
+
+Once in setup mode, you can controll what is allowed (depends on mod configuration)
+
+Change rotate mode (between player and map): Key Z
+Change player zoom: Left mouse button and up/down move, or Key J and Key N
+Change player icon size: Right mouse button and up/down move or Key K and Key M
+	
+
+]]></en>
+<cz><![CDATA[Mód reálné GPS
+
+Ingame GPS mapa s volitelným nastavením.
+Toto je pouze podpůrný mod.
+Pro funkčnost musí být do vozidla vložena specializace.
+
+Pokud jste modder, který by si přál mít mód reálné GPS ve stroji, řiďte se příručkou, která je k dostání v souboru README.txt, který se nachází ve složce s modem. Pro podrobnosti pokračujte na GitHub repozitář (anglicky).
+
+Autor: Martin Fabík
+Email: mar.fabik@gmail.com
+GitHub projekt: https://github.com/LoogleCZ/FS17-RealGPSMod
+
+Podpora přes PayPal: https://www.paypal.me/MartinFabik
+
+Základní nastavení ovládání:
+
+Zapnout/Vypnout nastavování GPS mapy: Levý Shift + Klávesa L
+
+Jakmile jste v nastavovacím módu, můžete ovládat prvky, které jsou povolené nastavením konkrétního modu
+
+Změnit styl rotace (výběr hráč/mapa): Klávesa Z
+Změnit přiblížení mapy: Levé tlačítko myši + pohyb nahoru/dolů, nebo klávesa J a klávesa N
+Změnit velikost ikony hráče: Pravé tlačítko myši + pohyb nahoru/dolů nebo klávesa K a klávesa M
+]]></cz>
+    </description>
+	
+    <extraSourceFiles>
+       <sourceFile filename="scripts/loader.lua" />
+    </extraSourceFiles>
+	
+	<l10n>
+		<text name="status_lrm_map">
+			<en>map</en>
+			<cz>mapa</cz>
+		</text>
+		<text name="status_lrm_player">
+			<en>player</en>
+			<cz>hráč</cz>
+		</text>
+		<text name="status_lrm_playerSize">
+			<en>Actual player size: %.3f</en>
+			<cz>Aktuální velikost hráče: %.3f</cz>
+		</text>
+		<text name="status_lrm_mapZoom">
+			<en>Actual map zoom: %.2fx</en>
+			<cz>Aktuální přiblížení mapy: %.2fx</cz>
+		</text>
+		<text name="action_lrm_exitSetupMode">
+			<en>Exit GPS map setup mode</en>
+			<cz>Vypnout nastavování GPS mapy</cz>
+		</text>
+		<text name="action_lrm_enterSetupMode">
+			<en>Enter GPS map setup mode</en>
+			<cz>Zapnout nastavování GPS mapy</cz>
+		</text>
+		<text name="input_LRM_TOGGLE_ROTATE_MODE">
+			<en>Toggle GPS map rotate mode</en>
+			<cz>Změnit mód otáčení GPS mapy</cz>
+		</text>
+		<text name="input_LRM_SETUP_MODE">
+			<en>GPS Map setup mode</en>
+			<cz>Nastavení GPS mapy</cz>
+		</text>
+		<text name="input_AXIS_LRM_MAP_ZOOM_1">
+			<en>Increase GPS map zoom</en>
+			<cz>Zvětšit přiblížení GPS mapy</cz>
+		</text>
+		<text name="input_AXIS_LRM_MAP_ZOOM_2">
+			<en>Decrese GPS map zoom</en>
+			<cz>Snížit přiblížení GPS mapy</cz>
+		</text>
+		<text name="input_AXIS_LRM_PLAYER_SIZE_1">
+			<en>Increase GPS map player size</en>
+			<cz>Zvětšit ikonu hráče na GPS mapě</cz>
+		</text>
+		<text name="input_AXIS_LRM_PLAYER_SIZE_2">
+			<en>Decrease GPS map player size</en>
+			<cz>Zmenšit ikonu hráče na GPS mapě</cz>
+		</text>
+	</l10n>
+	
+	<inputBindings>
+		<input name="LRM_SETUP_MODE"         category="VEHICLE" key1="KEY_lshift KEY_l" key2=""      device="0" button=""                                           mouse="" />
+		<input name="LRM_TOGGLE_ROTATE_MODE" category="VEHICLE" key1="KEY_z"            key2=""      device="0" button=""                                           mouse="" />
+		<axis  name="AXIS_LRM_MAP_ZOOM"      category="VEHICLE" key1="KEY_j"            key2="KEY_n" device="0" button="" axis="" invert="false" isHalfAxis="false" mouse="MOUSE_BUTTON_LEFT"  mouseAxis="y" visible="true" />
+		<axis  name="AXIS_LRM_PLAYER_SIZE"   category="VEHICLE" key1="KEY_k"            key2="KEY_m" device="0" button="" axis="" invert="false" isHalfAxis="false" mouse="MOUSE_BUTTON_RIGHT" mouseAxis="y" visible="true" />
+	</inputBindings>
+</modDesc>
