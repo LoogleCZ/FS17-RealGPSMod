@@ -7,7 +7,7 @@ If you want to change keymap for your game, do not change `modDesc.xml` of this 
 | Key                | Action                                                | Applicable             |
 |:------------------:|:----------------------------------------------------- |:---------------------- |
 | `Left shift` + `L` | Enter/exit setup mod                                  | Any time*              |
-| `T`                | Toggle between map rotation and player rotation modes | In configuration mode* |
+| `Z`                | Toggle between map rotation and player rotation modes | In configuration mode* |
 
 * Only when this option is available in vehicle's configuration
 

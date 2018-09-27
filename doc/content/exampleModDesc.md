@@ -2,7 +2,7 @@
 
 Here zou can find steps how to register specialization into your vehicle. Note that this is not full `modDesc.xml`
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="39">
 	<!-- other nodes goes here -->

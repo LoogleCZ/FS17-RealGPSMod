@@ -6,6 +6,8 @@ In this documentation you can find tutorials on:
 - [Default keymap for Real GPS mod](./content/keymap.md)
 - [Example configuration for Real GPS mod](./content/exampleConfig.md)
 
+For advanced tutorial on how to integrate Real GPS Mod with Interactive Control, see [IC integration guide](./advanced/IC_integration.md)
+
 ## Contributing
 
 You can contribute to this documentation by pull request. If you don't know wo to do it, please contact me at [mar.fabik@gmail.com](mailto:mar.fabik@gmail.com) with your suggestion.
