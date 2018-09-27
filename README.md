@@ -38,7 +38,7 @@ Compatibile with [Interactive Control specialization (v4.1.1)](https://github.co
 
 ### Contributors
 
-#### Developments:
+#### Development:
 
 - [Martin Fabík](https://www.fb.com/LoogleCZ) [\<mar.fabik@gmail.com\>](mailto:mar.fabik@gmail.com)
 
